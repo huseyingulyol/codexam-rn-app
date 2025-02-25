@@ -34,14 +34,14 @@ export default function RegisterScreen({ navigation }: Props) {
     }
 
     // Şifre uzunluğu kontrolü
-    if (form.password.length < 6) {
+    if (form.password.length < 8) {
       Alert.alert("Hata", "Şifre en az 6 karakter olmalıdır.");
       return;
     }
     if (form.password !== form.passwordConfirm) {
       Alert.alert("Hata", "Şifreler eşleşmiyor");
       return;
-  }
+    }
   
 
     // E-posta formatını kontrol et
@@ -49,9 +49,10 @@ export default function RegisterScreen({ navigation }: Props) {
     if (!emailRegex.test(form.email)) {
       Alert.alert("Hata", "Lütfen geçerli bir e-posta adresi girin.");
       return;
+      
     }
     console.log(form)
-    await pb.admins.authWithPassword(PB_EMAIL, PB_PASSWORD);
+    // await pb.admins.authWithPassword(PB_EMAIL, PB_PASSWORD);
 
     try {
       // Kullanıcıların kayıt olduğu koleksiyon "users" olmalıdır.
@@ -68,7 +69,7 @@ export default function RegisterScreen({ navigation }: Props) {
       // Kullanıcıyı login sayfasına yönlendir (geri dönüşü kapatmak için)
       navigation.reset({ index: 0, routes: [{ name: "Login" }] });
     } catch (error: any) {
-      console.error("Kayıt hatası:", error);
+      console.error("Kayıt hatası:", JSON.stringify(error, null, 2));
       Alert.alert("Hata", error.message || "Kayıt sırasında bir hata oluştu.");
     }
   };
