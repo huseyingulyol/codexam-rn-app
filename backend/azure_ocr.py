@@ -16,8 +16,10 @@ import matplotlib.image as mpimg
 from dotenv import load_dotenv
 import os
 
-subscription_key = load_dotenv().get("AZURE_SUBSCRIPTION_KEY")
-endpoint = load_dotenv().get("AZURE_ENDPOINT")
+load_dotenv()
+
+subscription_key = os.getenv("AZURE_SUBSCRIPTION_KEY")
+endpoint = os.getenv("AZURE_ENDPOINT")
 
 computervision_client = ComputerVisionClient(endpoint, CognitiveServicesCredentials(subscription_key))
 
