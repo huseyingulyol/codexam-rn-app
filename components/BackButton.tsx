@@ -4,7 +4,7 @@ import { StyleSheet } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 
-export default function BackButton({ navigation } : any) {
+export default function BackButton({ navigation } : any)  {
   return (
     <View style={styles.buttonBack}>
       <TouchableOpacity style={styles.buttonBack} onPress={() => navigation.goBack()}>
