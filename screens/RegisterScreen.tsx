@@ -77,7 +77,7 @@ export default function RegisterScreen({ navigation }: Props) {
     <SafeAreaView style={styles.container}>
         {/* HEADER */}
         <View style ={styles.header}>
-            <BackButton navigation={navigation}/>
+            <BackButton navigation={navigation} targetScreen="Home"/>
             <Text style={styles.title}>CodExam</Text>
         </View>
 
