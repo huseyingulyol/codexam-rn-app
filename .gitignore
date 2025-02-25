@@ -2,7 +2,7 @@
 
 # dependencies
 node_modules/
-
+backend/uploads/
 # Expo
 .expo/
 dist/
