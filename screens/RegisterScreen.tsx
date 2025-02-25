@@ -11,6 +11,7 @@ import {PB_EMAIL, PB_PASSWORD} from '@env';
 interface RegisterForm {
   email: string;
   password: string;
+  passwordConfirm:string;
 }
 
 type Props = NativeStackScreenProps<RootStackParamList, "Register">;
@@ -19,6 +20,7 @@ export default function RegisterScreen({ navigation }: Props) {
   const [form, setForm] = useState<RegisterForm>({
     email: '',
     password: '',
+    passwordConfirm:'',
   });
 
   function handleInputChange(field: keyof RegisterForm, value: string): void {
@@ -36,6 +38,11 @@ export default function RegisterScreen({ navigation }: Props) {
       Alert.alert("Hata", "Şifre en az 6 karakter olmalıdır.");
       return;
     }
+    if (form.password !== form.passwordConfirm) {
+      Alert.alert("Hata", "Şifreler eşleşmiyor");
+      return;
+  }
+  
 
     // E-posta formatını kontrol et
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -51,7 +58,7 @@ export default function RegisterScreen({ navigation }: Props) {
       const newUser = await  pb.collection("users").create({
         email: form.email,
         password: form.password,
-        passwordConfirm: form.password, // PocketBase için gerekli
+        passwordConfirm: form.passwordConfirm, // PocketBase için gerekli
 
       });
 
@@ -100,6 +107,15 @@ export default function RegisterScreen({ navigation }: Props) {
                 onChangeText={(text) => handleInputChange("password", text)}
                 style={styles.input}
                 placeholder="Şifre yazın"
+                placeholderTextColor="#888"
+                secureTextEntry
+                />
+                <Text style={styles.label}>Şifre Onay</Text>
+                <TextInput
+                value={form.passwordConfirm}
+                onChangeText={(text) => handleInputChange("passwordConfirm", text)}
+                style={styles.input}
+                placeholder="Şifreyi tekrar yazın"
                 placeholderTextColor="#888"
                 secureTextEntry
                 />
