@@ -5,6 +5,7 @@ from fastapi.responses import JSONResponse
 from pathlib import Path
 import shutil
 from azure_ocr import run_ocr 
+from gemini import post_correction 
 
 app = FastAPI()
 
@@ -29,7 +30,9 @@ async def upload_photo(file: UploadFile = File(...)):
         with file_location.open("wb") as buffer:
             shutil.copyfileobj(file.file, buffer)
 
-        response = await run_ocr(f"./uploads/{file.filename}")
+        ocr_result = await run_ocr(f"./uploads/{file.filename}")
+        response = await post_correction(ocr_result)
+
         return JSONResponse(content={"message": "Successfully", 
                                     "filename": file.filename,
                                     "response": response,

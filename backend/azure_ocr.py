@@ -32,7 +32,6 @@ async def run_ocr(image_path):
   read_operation_location = read_response.headers["Operation-Location"]
   operation_id = read_operation_location.split("/")[-1]
 
-  # Call the "GET" API and wait for it to retrieve the results 
   while True:
       read_result = computervision_client.get_read_result(operation_id)
       if read_result.status not in ['notStarted', 'running']:
