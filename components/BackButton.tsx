@@ -4,10 +4,10 @@ import { StyleSheet } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 
-export default function BackButton({ navigation } : any)  {
+export default function BackButton({navigation, targetScreen } : any)  {
   return (
     <View style={styles.buttonBack}>
-      <TouchableOpacity style={styles.buttonBack} onPress={() => navigation.goBack()}>
+      <TouchableOpacity style={styles.buttonBack} onPress={() => targetScreen ? navigation.navigate(targetScreen) : navigation.goBack()}>
         <View> 
             <Ionicons name="arrow-back" size={40} color="black" />
         </View>

@@ -1,12 +1,31 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import ExamListScreen from "../screens/ExamListScreen";
+import SettingScreen from "../screens/SettingScreen";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import Icon from "react-native-vector-icons/Ionicons";
+
+const Tab = createBottomTabNavigator();
 
 export default function BottomNavigator() {
   return (
-    <View>
-      <Text>BottomNavigator</Text>
-    </View>
-  )
+    <Tab.Navigator  
+      screenOptions={({ route }) => ({
+        headerShown: false, 
+        tabBarIcon: ({ color, size }) => {
+          let iconName;
+          if (route.name === "ExamList") {
+            iconName = "book";
+          } else if (route.name === "Setting") {
+            iconName = "person-outline";
+          }
+          return <Icon name={iconName} size={size} color={color} />;
+        },
+        tabBarStyle: { backgroundColor: "#313244", height: 60 }, // Daha iyi görünüm için
+        tabBarActiveTintColor: "#fff",
+        tabBarInactiveTintColor: "#999",
+      })}
+    >
+      <Tab.Screen name="ExamList" component={ExamListScreen} options={{ title: "Sınav Listesi" }} />
+      <Tab.Screen name="Setting" component={SettingScreen} options={{ title: "Ayarlar" }} />
+    </Tab.Navigator>
+  );
 }
-
-const styles = StyleSheet.create({})
