@@ -51,11 +51,9 @@ export default function LoginScreen({navigation}:Props) {
     
     <SafeAreaView style={{flex:1,backgroundColor:"#1e1e2e"}}>
       
-        <View style={styles.header}> 
+      <View style={styles.header}> 
         <BackButton navigation={navigation} 
         />
-
-
             <Text style={styles.title}>CodExam</Text>
         </View>
         <View style={styles.body}>
@@ -71,8 +69,8 @@ export default function LoginScreen({navigation}:Props) {
             style={styles.input}
             placeholder="E-posta adresinizi girin"
             placeholderTextColor="#888"
-            value={form.email}
-            onChangeText={(text) => setForm({ ...form, email: text })}
+            value={form.username}
+            onChangeText={(text) => setForm({ ...form, username: text })}
           />
           <Text style={styles.label}>Şifre</Text>
           <TextInput

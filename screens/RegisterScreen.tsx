@@ -26,23 +26,23 @@ export default function RegisterScreen({ navigation }: Props) {
   }
 
   const handleRegister = async () => {
-    // if (!form.email || !form.password) {
-    //   Alert.alert("Hata", "Lütfen tüm alanları doldurun.");
-    //   return;
-    // }
+    if (!form.email || !form.password) {
+      Alert.alert("Hata", "Lütfen tüm alanları doldurun.");
+      return;
+    }
 
-    // // Şifre uzunluğu kontrolü
-    // if (form.password.length < 6) {
-    //   Alert.alert("Hata", "Şifre en az 6 karakter olmalıdır.");
-    //   return;
-    // }
+    // Şifre uzunluğu kontrolü
+    if (form.password.length < 6) {
+      Alert.alert("Hata", "Şifre en az 6 karakter olmalıdır.");
+      return;
+    }
 
-    // // E-posta formatını kontrol et
-    // const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    // if (!emailRegex.test(form.email)) {
-    //   Alert.alert("Hata", "Lütfen geçerli bir e-posta adresi girin.");
-    //   return;
-    // }
+    // E-posta formatını kontrol et
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(form.email)) {
+      Alert.alert("Hata", "Lütfen geçerli bir e-posta adresi girin.");
+      return;
+    }
     console.log(form)
     await pb.admins.authWithPassword(PB_EMAIL, PB_PASSWORD);
 
@@ -69,7 +69,7 @@ export default function RegisterScreen({ navigation }: Props) {
     <SafeAreaView style={styles.container}>
         {/* HEADER */}
         <View style ={styles.header}>
-            <BackButton navigation={navigation}/>
+            <BackButton navigation={navigation} targetScreen="Home"/>
             <Text style={styles.title}>CodExam</Text>
         </View>
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import { SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-// import global from "./styles"
+import global from "./styles"
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { RootStackParamList } from "../navigators/RootNavigator";
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
@@ -10,7 +10,7 @@ type Props = NativeStackScreenProps<RootStackParamList, "Home">;
 export default function HomeScreen({ navigation }: Props){
     return (
         
-    <View style={global.background}>
+    <View style={global.backgroundDarkColor}>
         <View style={styles.header}> 
             <Ionicons name="code" size={40} color="white" style={styles.icon} />
             <Text style={styles.title}>  CodExam Reader</Text>
