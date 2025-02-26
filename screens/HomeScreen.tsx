@@ -13,7 +13,7 @@ export default function HomeScreen({ navigation }: Props){
     <View style={global.backgroundDarkColor}>
         <View style={styles.header}> 
             <Ionicons name="code" size={40} color="white" style={styles.icon} />
-            <Text style={styles.title}>  CodExam Reader</Text>
+            <Text style={styles.title}> CodExam Reader</Text>
         </View>
         <Text style={styles.text}>Merhaba CodExam'a Hoşgeldin </Text>
         <TouchableOpacity style={styles.buttonLogin} onPress={() => navigation.navigate("Login")}>
@@ -21,12 +21,17 @@ export default function HomeScreen({ navigation }: Props){
                   <Text style={{fontSize:36,alignItems:"center",color:"#1e1e2e"}}>Giriş Yap</Text>
                 </View>
         </TouchableOpacity>
+        <TouchableOpacity style={styles.buttonLogin} onPress={() => navigation.navigate("Camera")}>
+                 <View> 
+                  <Text style={{fontSize:36,alignItems:"center",color:"#1e1e2e"}}>Gamerayı aç amk</Text>
+                </View>
+        </TouchableOpacity>
         <View style={styles.footer}>
-            <Text style={{color:"#cdd6f4",textAlign:"center"}}>Amasya Üniversitesi için <Text style={{ fontWeight: "bold" }}>Streamworld</Text> ekibi tarafında geliştirilmiştir.</Text>
+            <Text style={styles.footerText}>Amasya Üniversitesi için <Text style={{ fontWeight: "bold" }}>Streamworld</Text> ekibi tarafında geliştirilmiştir.</Text>
         </View>
         
       
-      
+        
     </View>
     
   ); 
@@ -34,11 +39,16 @@ export default function HomeScreen({ navigation }: Props){
 
 
 const styles=StyleSheet.create({
+    footerText:{
+        marginTop:"5%",
+        color:"#cdd6f4",
+        textAlign:"center"
+    },
 footer:{
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    marginTop: "70%",
+    marginTop: "84%",
     backgroundColor: "#1e1e2e",
     padding: 5,
     borderRadius: 5,
@@ -79,10 +89,11 @@ icon:{
     marginTop: "15%",
 },
 header:{  
+    
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    marginTop: "5%",
-    marginLeft: "1%",
+    marginTop: "8%",
+    
 }
 })

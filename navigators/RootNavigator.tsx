@@ -6,7 +6,7 @@ import RegisterScreen from "../screens/RegisterScreen";
 import HomeScreen from "../screens/HomeScreen";
 import ExamListScreen from "../screens/ExamListScreen";
 import SettingScreen from "../screens/SettingScreen";
-
+import CameraScreen from "../screens/CameraScreen";
 
 
 
@@ -17,6 +17,7 @@ export type RootStackParamList = {
   Register: undefined;
   Setting:undefined;
   Home:undefined;
+  Camera:undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -25,6 +26,7 @@ export default function RootNavigator() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       {/* ALT NAVİGASYON İÇİN BottomNavigator */}
+      
       <Stack.Screen name="Home" component={HomeScreen} />
 
       <Stack.Screen name="ExamList" component={BottomNavigator} />
@@ -32,6 +34,8 @@ export default function RootNavigator() {
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Register" component={RegisterScreen} />
       <Stack.Screen name="Setting" component={SettingScreen} />
+      <Stack.Screen name="Camera" component={CameraScreen} />
+      
     </Stack.Navigator>
   );
 }
