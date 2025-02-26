@@ -52,9 +52,7 @@ Directory structure:
 - Expo Developer Tools'u açın ve cihazınızdaki Expo Go uygulamasıyla QR kodunu taratın.
 - Uygulama, cihazınızda geliştirme için yüklenecektir.
 
-
-
-# Android Emülatöründe Çalıştırma
+## Android Emülatöründe Çalıştırma
 
 Android Studio'yu indirin ve kurun.
 Android Virtual Device (AVD) oluşturun ve çalıştırın.
@@ -62,4 +60,3 @@ Expo sunucusunu başlattıktan sonra a tuşuna basarak projeyi Android emülatö
 
 ## Lisans
 Bu proje, [MIT Lisansı](LICENSE) altında lisanslanmıştır.
-
