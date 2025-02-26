@@ -46,6 +46,3 @@ ENV/
 env.bak/
 venv.bak/
 
-
-#pocketbase
-backend/pocketbase/pb_data/

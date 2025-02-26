@@ -35,7 +35,7 @@ export default function RegisterScreen({ navigation }: Props) {
 
     // Şifre uzunluğu kontrolü
     if (form.password.length < 8) {
-      Alert.alert("Hata", "Şifre en az 6 karakter olmalıdır.");
+      Alert.alert("Hata", "Şifre en az 8 karakter olmalıdır.");
       return;
     }
     if (form.password !== form.passwordConfirm) {
@@ -52,7 +52,7 @@ export default function RegisterScreen({ navigation }: Props) {
       
     }
     console.log(form)
-    // await pb.admins.authWithPassword(PB_EMAIL, PB_PASSWORD);
+    await pb.admins.authWithPassword(PB_EMAIL, PB_PASSWORD);
 
     try {
       // Kullanıcıların kayıt olduğu koleksiyon "users" olmalıdır.

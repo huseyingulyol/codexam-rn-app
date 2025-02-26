@@ -3,18 +3,18 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import BackButton from '../components/BackButton';
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 
-const SettingScreen = ({ navigation }:any) => {
+const AccountScreen = ({ navigation }:any) => {
   const settingsOptions = [
-    { id: 'Account', label: 'Hesabım' },  
-    { id: 'Notifications', label: 'Bildirimler' },
-    { id: 'Privacy', label: 'Gizlilik' },
+    { id: 'ChangePassword', label: 'Şifre Değiştir' },  
+    { id: 'DeleteAccount', label: 'Hesabımı Sil' },
+
   ];
 
   return (
     <SafeAreaView style={{flex:1,backgroundColor:"#1e1e2e"}}>
       <View style={styles.header}> 
         <BackButton navigation={navigation} />
-        <Text style={styles.header}>Ayarlar</Text>
+        <Text style={styles.header}>Hesabım</Text>
       </View>
        <View style={styles.container}>
         {settingsOptions.map((item) => (
@@ -33,8 +33,8 @@ const SettingScreen = ({ navigation }:any) => {
 };
 
 const styles = StyleSheet.create({
-  container: {  flex: 1 },
-  header: { color:"#cdd6f4",fontSize: 24, fontWeight: 'bold', marginBottom: 20 },
+  container: { flex:1},
+  header: { color:"#cdd6f4",fontSize: 24, fontWeight: 'bold', marginBottom: 30 },
   button: {
     backgroundColor: '#cdd6f4',
     padding: 16,
@@ -44,6 +44,4 @@ const styles = StyleSheet.create({
   buttonText: {color:"#1e1e2e", fontSize: 20 ,fontWeight:"bold"}
 });
 
-export default SettingScreen;
-
-  
+export default AccountScreen;

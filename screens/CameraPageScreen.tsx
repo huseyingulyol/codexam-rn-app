@@ -15,19 +15,14 @@ export default function ExamNameScreen({ navigation }: Props) {
   return (
     <SafeAreaView>
     <View style={styles.container}>
-      <Text style={styles.label}>Sınav ismini girin</Text>
-    <TouchableOpacity style={styles.buttonCameraPage} onPress={() => navigation.navigate("CameraPage")}>
+     
+    <TouchableOpacity style={styles.buttonCameraPage} onPress={() => navigation.navigate("Camera")}>
                      <View> 
-                      <Text style={{fontSize:36,alignItems:"center",color:"#1e1e2e"}}>Devam et</Text>
+                      <Text style={{fontSize:36,alignItems:"center",color:"#1e1e2e"}}>foto yükle</Text>
                     </View>
             </TouchableOpacity>
       
-      <TextInput
-        style={styles.input}
-        placeholder="Sınav ismi..."
-        value={examName}
-        onChangeText={setExamName}
-      />
+      
     <BackButton navigation={navigation}/>
     </View>
     </SafeAreaView>
