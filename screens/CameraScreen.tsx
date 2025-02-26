@@ -50,7 +50,9 @@ export default function CameraScreen({navigation}: any) {
       <View style={styles.container}>
         {/* Sol üstte geri butonu ve başlık */}
         <View style={styles.header}>
-          <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+          <TouchableOpacity style={styles.backButton} onPress={() => {
+            navigation.navigate("ExamList")
+          }}>
             <Text style={styles.text}>Geri</Text>
           </TouchableOpacity>
           <Text style={styles.title}>1.Kişinin 1.Sayfası</Text>
