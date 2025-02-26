@@ -9,7 +9,7 @@ export default function BackButton({navigation, targetScreen } : any)  {
     <View style={styles.buttonBack}>
       <TouchableOpacity style={styles.buttonBack} onPress={() => targetScreen ? navigation.navigate(targetScreen) : navigation.goBack()}>
         <View> 
-            <Ionicons name="arrow-back" size={40} color="white" />
+            <Ionicons name="arrow-back" size={40} color="#cdd6f4" />
         </View>
       </TouchableOpacity>
     </View>

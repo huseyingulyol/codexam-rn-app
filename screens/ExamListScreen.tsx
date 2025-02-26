@@ -1,24 +1,85 @@
-import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView } from "react-native";
+import React, { useState, useEffect } from "react";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  SafeAreaView,
+  ScrollView,
+  Alert
+} from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../navigators/RootNavigator";
-import React from "react";
 
 type Props = NativeStackScreenProps<RootStackParamList, "ExamList">;
 
-export default function ExamListScreen({ navigation }: Props) {
+type ExamListScreenParams = {
+  examName?: string;
+};
+
+export default function ExamListScreen({ navigation, route }: Props) {
+  const [exams, setExams] = useState<string[]>([]);
+
+  useEffect(() => {
+    loadExams();
+  }, []);
+
+  useEffect(() => {
+    if (route.params && "examName" in route.params) {
+      const newExam = route.params.examName as string;
+      setExams((prevExams) => {
+        if (!prevExams.includes(newExam)) {
+          const updatedExams = [...prevExams, newExam];
+          saveExams(updatedExams);
+          return updatedExams;
+        }
+        return prevExams;
+      });
+  
+      loadExams(); // Eklenen sınavı anında yüklemek için ekledik
+    }
+  }, [route.params]);
+
+  const loadExams = async () => {
+    try {
+      const storedExams = await AsyncStorage.getItem("exams");
+      if (storedExams) {
+        setExams(JSON.parse(storedExams));
+      }
+    } catch (error) {
+      Alert.alert("Hata", "Sınavlar yüklenirken hata oluştu.");
+    }
+  };
+
+  const saveExams = async (updatedExams: string[]) => {
+    try {
+      await AsyncStorage.setItem("exams", JSON.stringify(updatedExams));
+    } catch (error) {
+      Alert.alert("Hata", "Sınavlar kaydedilirken hata oluştu.");
+    }
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.headerText}>Sınav Listesi</Text>
-
-      <View style={styles.examList}>
-        <TouchableOpacity style={styles.buttonSinav} onPress={() => navigation.navigate("ExamName")}>
-          <Text style={styles.buttonText}>Sınav Adı</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.buttonCreateExam} onPress={() => navigation.navigate("ExamName")}>
+      <ScrollView contentContainerStyle={styles.scrollViewContent}>
+        {exams.map((exam, index) => (
+          <TouchableOpacity
+            key={index}
+            style={styles.buttonSinav}
+            onPress={() => navigation.navigate("ExamSettingsList", { examName: exam })}
+          >
+            <Text style={styles.buttonText}>{exam}</Text>
+          </TouchableOpacity>
+        ))}
+        <TouchableOpacity
+          style={styles.buttonCreateExam}
+          onPress={() => navigation.navigate("ExamName", { exams })}
+        >
           <Text style={styles.buttonText}>+</Text>
         </TouchableOpacity>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
@@ -29,27 +90,33 @@ const styles = StyleSheet.create({
     backgroundColor: "#1e1e2e",
     alignItems: "center",
     justifyContent: "flex-start",
+    paddingTop: 20,
   },
   headerText: {
-    fontSize: 40,
-    color: "white",
-    marginVertical: 20,
+    fontSize: 32,
+    color: "#cdd6f4",
+    fontWeight: "bold",
+    marginBottom: 20,
   },
-  examList: {
-    backgroundColor: "#313244",
-    borderRadius: 20,
-    padding: 20,
-    width: "80%",
+  scrollViewContent: {
     alignItems: "center",
+    paddingVertical: 20,
   },
   buttonSinav: {
-    width: 120,
-    height: 120,
+    width: 200,
+    height: 80,
     backgroundColor: "#1e1e2e",
-    borderRadius: 30,
+    borderRadius: 15,
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: 20,
+    marginBottom: 15,
+    borderWidth: 2,
+    borderColor: "#cdd6f4",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+    elevation: 5,
   },
   buttonCreateExam: {
     width: 100,
@@ -58,10 +125,18 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     alignItems: "center",
     justifyContent: "center",
+    marginBottom: 20,
+    borderWidth: 2,
+    borderColor: "#cdd6f4",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+    elevation: 5,
   },
   buttonText: {
-    padding: 20,
-    fontSize: 50,
+    fontSize: 20,
     color: "#cdd6f4",
+    fontWeight: "bold",
   },
 });

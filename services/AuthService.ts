@@ -2,7 +2,13 @@ import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 // Çevresel değişkenlerden API URL'yi al (.env kullanıyorsan)
-const API_URL = process.env.PUBLIC_API_URL || "https://your-api.com/auth";
+const API_URL = process.env.PUBLIC_API_URL || "http://localhost:5207/api";
+const api = axios.create({
+  baseURL:"http://10.0.2.2:5207/api",
+  headers:{
+    'Content-Type':'application/json',
+  },
+});
 
 export const AuthService = {
   // Kullanıcı giriş yapar ve token saklanır
@@ -27,11 +33,9 @@ export const AuthService = {
   // Yeni kullanıcı kayıt işlemi
   register: async (email: string, password: string) => {
     try {
-      console.log(`${API_URL}/values`)
-      const response = await axios.get(`${API_URL}/values`);
-      console.log(response.data)
-      return;
-      // const response = await axios.post(`${API_URL}/register`, { email, password });
+      
+      const response = await api.post("/user", { email:email, passwordHash:password,roleId:2 });
+
 
       if (response.data) {
         return response.data; // Backend'den dönen başarılı kayıt bilgisi

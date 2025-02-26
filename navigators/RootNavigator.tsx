@@ -27,6 +27,7 @@ export type RootStackParamList = {
   ChangePassword:undefined;
   CameraPage:undefined;
   Camera:undefined;
+  
 
 };
 
@@ -36,8 +37,9 @@ export default function RootNavigator() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       {/* ALT NAVİGASYON İÇİN BottomNavigator */}
-      <Stack.Screen name="ExamName" component={ExamNameScreen} />
       <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="ExamName" component={ExamNameScreen} />
+      
       <Stack.Screen name="ExamList" component={BottomNavigator} />
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Register" component={RegisterScreen} />

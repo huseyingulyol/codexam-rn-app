@@ -9,7 +9,6 @@ import BackButton from "../components/BackButton";
 type Props = NativeStackScreenProps<RootStackParamList, "Login">;
 
 export default function LoginScreen({ navigation }: Props) {
-  const authContext = useContext(AuthContext); // ✅ AuthContext'i kullan
   const [form, setForm] = useState({ email: "", password: "" });
 
   // Kullanıcı giriş işlemi
