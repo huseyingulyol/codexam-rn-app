@@ -5,8 +5,8 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { RootStackParamList } from '../navigators/RootNavigator';
 import BackButton from "../components/BackButton";
-import pb from '../services/pocketbase'; // PocketBase servisini içe aktar
-import { PB_EMAIL, PB_PASSWORD } from '@env';
+// import pb from '../services/pocketbase'; // PocketBase servisini içe aktar
+// import { PB_EMAIL, PB_PASSWORD } from '@env';
 
 type Props = NativeStackScreenProps<RootStackParamList, "ChangePassword">;
 
@@ -25,26 +25,26 @@ export default function ChangePasswordScreen({ navigation }: Props) {
             Alert.alert("Hata", "Yeni şifreler eşleşmiyor.");
             return;
         }
-        await pb.admins.authWithPassword(PB_EMAIL, PB_PASSWORD);
+        // await pb.admins.authWithPassword(PB_EMAIL, PB_PASSWORD);
 
         try {
             // E-posta ile kullanıcıyı al
-            const users = await pb.collection('users').getFullList(200, { filter: `email = "${email}"` });
+            // const users = await pb.collection('users').getFullList(200, { filter: `email = "${email}"` });
 
-            if (users.length === 0) {
-                Alert.alert("Hata", "Bu e-posta adresiyle kayıtlı kullanıcı bulunamadı.");
-                return;
-            }
+            // if (users.length === 0) {
+            //     Alert.alert("Hata", "Bu e-posta adresiyle kayıtlı kullanıcı bulunamadı.");
+            //     return;
+            // }
 
-            const user = users[0];
+            // const user = users[0];
 
             // Eski şifreyi doğrula (burada eski şifreyi doğru girmeleri gerekiyor)
-            const authData = await pb.collection('users').authWithPassword(email, oldPassword);
+            // const authData = await pb.collection('users').authWithPassword(email, oldPassword);
 
-            if (!authData) {
-                Alert.alert("Hata", "Eski şifre hatalı.");
-                return;
-            }
+            // if (!authData) {
+            //     Alert.alert("Hata", "Eski şifre hatalı.");
+            //     return;
+            // }
 
             // Eski şifre doğruysa yeni şifreyi güncelle
             // await pb.collection('users').authWithPassword(email, oldPassword);

@@ -5,8 +5,8 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { RootStackParamList } from '../navigators/RootNavigator';
 import BackButton from '../components/BackButton';
-import pb from '../services/pocketbase'; // PocketBase servisini içe aktar
-import { PB_EMAIL, PB_PASSWORD } from '@env';
+// import pb from '../services/pocketbase'; // PocketBase servisini içe aktar
+// import { PB_EMAIL, PB_PASSWORD } from '@env';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'DeleteAccount'>;
 
@@ -17,18 +17,18 @@ export default function DeleteAccountScreen({ navigation }: Props) {
         setLoading(true);
         try {
             // Kullanıcı oturumunun geçerli olup olmadığını kontrol et
-            const userId = pb.authStore.model?.id;
-            if (!userId) {
-                Alert.alert('Hata', 'Kullanıcı oturumu geçersiz. Lütfen tekrar giriş yapın.');
-                return;
-            }
+            // const userId = pb.authStore.model?.id;
+            // if (!userId) {
+            //     Alert.alert('Hata', 'Kullanıcı oturumu geçersiz. Lütfen tekrar giriş yapın.');
+            //     return;
+            // }
 
             // Kullanıcı hesabını sil
-            await pb.collection('users').delete(userId);
+            // await pb.collection('users').delete(userId);
             Alert.alert('Başarılı', 'Hesabınız başarıyla silindi.');
 
             // Oturumu temizle ve giriş ekranına yönlendir
-            pb.authStore.clear();
+            // pb.authStore.clear();
             navigation.reset({ index: 0, routes: [{ name: 'Login' }] });
 
         } catch (error:any ) {

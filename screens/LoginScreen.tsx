@@ -5,7 +5,6 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { RootStackParamList } from '../navigators/RootNavigator';
 import BackButton from "../components/BackButton";
-import pb from '../services/pocketbase'; // PocketBase servisini içe aktar
 
 type Props = NativeStackScreenProps<RootStackParamList, "Login">;
 
@@ -21,7 +20,6 @@ export default function LoginScreen({ navigation }: Props) {
     }
     try {
       // PocketBase ile kullanıcı giriş işlemi
-      const authData = await pb.collection('users').authWithPassword(form.email, form.password);
 
       Alert.alert("Başarılı", "Giriş yapıldı!");
       // navigation.navigate("ExamList"); // Başarılı girişte yönlendirme

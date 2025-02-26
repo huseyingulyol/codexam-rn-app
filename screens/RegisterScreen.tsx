@@ -5,8 +5,6 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import BackButton from '../components/BackButton';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import pb from '../services/pocketbase'; // PocketBase servisini içe aktar
-import {PB_EMAIL, PB_PASSWORD} from '@env';
 
 interface RegisterForm {
   email: string;
@@ -52,18 +50,18 @@ export default function RegisterScreen({ navigation }: Props) {
       
     }
     console.log(form)
-    await pb.admins.authWithPassword(PB_EMAIL, PB_PASSWORD);
+    // await pb.admins.authWithPassword(PB_EMAIL, PB_PASSWORD);
 
     try {
       // Kullanıcıların kayıt olduğu koleksiyon "users" olmalıdır.
-      const newUser = await  pb.collection("users").create({
-        email: form.email,
-        password: form.password,
-        passwordConfirm: form.passwordConfirm, // PocketBase için gerekli
+      // const newUser = await  pb.collection("users").create({
+      //   email: form.email,
+      //   password: form.password,
+      //   passwordConfirm: form.passwordConfirm, // PocketBase için gerekli
 
-      });
+      // });
 
-      console.log("Kullanıcı başarıyla oluşturuldu:", newUser);
+      // console.log("Kullanıcı başarıyla oluşturuldu:", newUser);
       Alert.alert("Başarılı", "Hesap oluşturuldu, giriş yapabilirsiniz.");
 
       // Kullanıcıyı login sayfasına yönlendir (geri dönüşü kapatmak için)

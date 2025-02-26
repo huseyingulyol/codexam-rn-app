@@ -1,84 +1,70 @@
-import { View, Text, Button, StyleSheet, TextInput,TouchableOpacity } from "react-native";
+import { TouchableOpacity, Text, StyleSheet, View } from "react-native";
 import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import { RootStackParamList } from "../navigators/RootNavigator";
-import { useState } from "react";
-import Ionicons from "react-native-vector-icons/Ionicons";
-import global from "./styles"
+import { useNavigation } from "@react-navigation/native";
 import BackButton from "../components/BackButton";
 import { SafeAreaView } from "react-native-safe-area-context";
+import * as ImagePicker from 'expo-image-picker';
 
 type Props = BottomTabScreenProps<RootStackParamList, "ExamName">;
 
 export default function ExamNameScreen({ navigation }: Props) {
-  const [examName, setExamName] = useState("");
+  
+  const handleOpenCamera = async () => {
+    const permission = await ImagePicker.requestCameraPermissionsAsync();
+    if (permission.granted) {
+      navigation.navigate("Camera");
+    } else {
+      alert("Kamera izni verilmedi!");
+    }
+  };
 
   return (
-    <SafeAreaView>
-    <View style={styles.container}>
-     
-    <TouchableOpacity style={styles.buttonCameraPage} onPress={() => navigation.navigate("Camera")}>
-                     <View> 
-                      <Text style={{fontSize:36,alignItems:"center",color:"#1e1e2e"}}>foto yükle</Text>
-                    </View>
-            </TouchableOpacity>
+    <SafeAreaView style={styles.safeArea}>
       
-      
-    <BackButton navigation={navigation}/>
-    </View>
+      <View style={styles.container}>
+      <BackButton navigation={navigation} />
+
+        <Text style={{marginVertical:60,...styles.title}}>Çözümsüz Sınav Kağıtlarını Tanımla</Text>
+
+        <TouchableOpacity style={styles.button} onPress={handleOpenCamera}>
+          <Text style={styles.buttonText}>Başla!</Text>
+        </TouchableOpacity>
+
+      </View>
     </SafeAreaView>
-    
   );
 }
-const styles=StyleSheet.create({
-    buttonCameraPage:{
-        width: "60%",
-    height: "10%",
-    backgroundColor: "#cdd6f4",
-    padding: 5,
-    borderRadius: 5,
-    alignItems: "center",
-    justifyContent: "center",
-    marginLeft:"20%",
-    marginTop: "50%",
-    },
-  container:{
 
+const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: "#f4f7fc",
   },
-  examName:{
+  container: {
+    flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    padding: 10,
-    marginTop:40,
-    backgroundColor: "lightblue",
-},
-label: {
-  fontWeight: "bold",
-  fontSize: 35,
-  marginLeft: "2%",
-  marginTop: "30%",
+    padding: 20,
   },
-input: {
-  width: "80%",
-  padding: 15,
-  borderWidth: 1,
-  borderColor: "gray",
-  backgroundColor: "white",
-  marginLeft: "2%",
-  marginTop: "5%",
-  borderBottomRightRadius:50,
-  borderTopRightRadius:50,
-  fontSize: 25,
-},
-buttonEntered: {
-    backgroundColor: "#1e1e2e",
-    borderRadius: 30,
-    paddingVertical: 10,
+  title: {
+    fontSize: 36,
+    fontWeight: "bold",
+    color: "#1e1e2e",
+    marginBottom: 30,
+  },
+  button: {
+    backgroundColor: "#5c6bc0",
+    paddingVertical: 12,
+    paddingHorizontal: 40,
+    borderRadius: 10,
     alignItems: "center",
-    marginTop: 10,
+    justifyContent: "center",
+    marginBottom: 20,
   },
   buttonText: {
-    fontSize: 24,
-    color: "#cdd6f4",
+    color: "#fff",
+    fontSize: 18,
     fontWeight: "bold",
   },
 });
