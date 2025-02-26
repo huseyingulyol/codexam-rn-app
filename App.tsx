@@ -4,6 +4,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import RootNavigator from './navigators/RootNavigator';
 import { AuthProvider } from "./context/AuthContext"; // ✅ AuthContext için doğru yolu düzelttik
 
+
 export default function App() {
   return (
     <AuthProvider>

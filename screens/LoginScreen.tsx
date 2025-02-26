@@ -5,7 +5,6 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { RootStackParamList } from '../navigators/RootNavigator';
 import BackButton from "../components/BackButton";
-import { AuthContext } from "../context/AuthContext"; // ✅ AuthContext'i ekledik
 
 type Props = NativeStackScreenProps<RootStackParamList, "Login">;
 
@@ -19,14 +18,9 @@ export default function LoginScreen({ navigation }: Props) {
       Alert.alert("Hata", "Lütfen tüm alanları doldurun.");
       return;
     }
-
-    if (!authContext) {
-      Alert.alert("Hata", "AuthContext yüklenemedi.");
-      return;
-    }
-
     try {
-      await authContext.login(form.email, form.password);
+      // PocketBase ile kullanıcı giriş işlemi
+
       Alert.alert("Başarılı", "Giriş yapıldı!");
       navigation.reset({ index: 0, routes: [{ name: "ExamList" }] }); // ✅ Başarılı girişte yönlendirme
     } catch (error) {

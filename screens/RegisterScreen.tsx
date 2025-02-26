@@ -5,7 +5,10 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import BackButton from '../components/BackButton';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+<<<<<<< HEAD
 import { AuthService } from '../services/AuthService'; // AuthService'i import ettik
+=======
+>>>>>>> f4ba0a69e4b3adaf2f8b4e7fa6becd4ff33a8e47
 
 interface RegisterForm {
   email: string;
