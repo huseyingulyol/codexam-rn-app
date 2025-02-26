@@ -7,19 +7,19 @@ const Tab = createBottomTabNavigator();
 
 export default function BottomNavigator() {
   return (
-    <Tab.Navigator  
+    <Tab.Navigator
       screenOptions={({ route }) => ({
-        headerShown: false, 
+        headerShown: false,
         tabBarIcon: ({ color, size }) => {
           let iconName;
           if (route.name === "ExamList") {
-            iconName = "book";
+            iconName = "book-outline"; // 'book' yerine 'book-outline' kullan
           } else if (route.name === "Setting") {
             iconName = "person-outline";
           }
           return <Icon name={iconName} size={size} color={color} />;
         },
-        tabBarStyle: { backgroundColor: "#313244", height: 60 }, // Daha iyi görünüm için
+        tabBarStyle: { backgroundColor: "#313244", height: 60 },
         tabBarActiveTintColor: "#fff",
         tabBarInactiveTintColor: "#999",
       })}
@@ -29,3 +29,4 @@ export default function BottomNavigator() {
     </Tab.Navigator>
   );
 }
+

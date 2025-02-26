@@ -16,6 +16,11 @@ export default function ExamNameScreen({ navigation }: Props) {
     <SafeAreaView>
     <View style={styles.container}>
       <Text style={styles.label}>Sınav ismini girin</Text>
+    <TouchableOpacity style={styles.buttonCameraPage} onPress={() => navigation.navigate("CameraPage")}>
+                     <View> 
+                      <Text style={{fontSize:36,alignItems:"center",color:"#1e1e2e"}}>Devam et</Text>
+                    </View>
+            </TouchableOpacity>
       
       <TextInput
         style={styles.input}
@@ -30,6 +35,17 @@ export default function ExamNameScreen({ navigation }: Props) {
   );
 }
 const styles=StyleSheet.create({
+    buttonCameraPage:{
+        width: "60%",
+    height: "10%",
+    backgroundColor: "#cdd6f4",
+    padding: 5,
+    borderRadius: 5,
+    alignItems: "center",
+    justifyContent: "center",
+    marginLeft:"20%",
+    marginTop: "50%",
+    },
   container:{
 
   },
@@ -58,4 +74,16 @@ input: {
   borderTopRightRadius:50,
   fontSize: 25,
 },
+buttonEntered: {
+    backgroundColor: "#1e1e2e",
+    borderRadius: 30,
+    paddingVertical: 10,
+    alignItems: "center",
+    marginTop: 10,
+  },
+  buttonText: {
+    fontSize: 24,
+    color: "#cdd6f4",
+    fontWeight: "bold",
+  },
 });

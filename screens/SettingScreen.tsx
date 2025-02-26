@@ -5,9 +5,9 @@ import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 
 const SettingScreen = ({ navigation }:any) => {
   const settingsOptions = [
-    { id: 'account', label: 'Hesabım' },  
-    { id: 'notifications', label: 'Bildirimler' },
-    { id: 'privacy', label: 'Gizlilik' },
+    { id: 'Account', label: 'Hesabım' },  
+    { id: 'Notifications', label: 'Bildirimler' },
+    { id: 'Privacy', label: 'Gizlilik' },
   ];
 
   return (
@@ -20,7 +20,7 @@ const SettingScreen = ({ navigation }:any) => {
         {settingsOptions.map((item) => (
         <TouchableOpacity
           key={item.id}
-          onPress={() => navigation.navigate(item.label)} // Sayfaya yönlendirme
+          onPress={() => navigation.navigate(item.id)} // Sayfaya yönlendirme
           style={styles.button}
           activeOpacity={0.7} // Tıklanma efekti
         >
