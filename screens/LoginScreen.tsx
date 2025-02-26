@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Alert, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
@@ -9,10 +9,9 @@ import BackButton from "../components/BackButton";
 type Props = NativeStackScreenProps<RootStackParamList, "Login">;
 
 export default function LoginScreen({ navigation }: Props) {
-  // Kullanıcı giriş bilgilerini saklamak için state
   const [form, setForm] = useState({ email: "", password: "" });
 
-  // Kullanıcı giriş işlemi (PocketBase)
+  // Kullanıcı giriş işlemi
   const handleLogin = async () => {
     if (!form.email || !form.password) {
       Alert.alert("Hata", "Lütfen tüm alanları doldurun.");
@@ -22,25 +21,27 @@ export default function LoginScreen({ navigation }: Props) {
       // PocketBase ile kullanıcı giriş işlemi
 
       Alert.alert("Başarılı", "Giriş yapıldı!");
-      // navigation.navigate("ExamList"); // Başarılı girişte yönlendirme
-      navigation.reset({ index: 0, routes: [{ name: "ExamList" }] });
-
+      navigation.reset({ index: 0, routes: [{ name: "ExamList" }] }); // ✅ Başarılı girişte yönlendirme
     } catch (error) {
-      Alert.alert("Giriş Hatası", "E-posta veya şifre hatalı.");
+      if (error instanceof Error) {
+        Alert.alert("Giriş Hatası", error.message);
+      } else {
+        Alert.alert("Giriş Hatası", "Bilinmeyen bir hata oluştu.");
+      }
     }
   };
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#1e1e2e" }}>
-      <View style={styles.header}>
-        <BackButton navigation={navigation} />
-        <Text style={styles.title}>CodExam</Text>
-      </View>
       <View style={styles.body}>
-        <View style={styles.icon}>
-          <Ionicons name="code" size={40} color="#cdd6f4" />
+        <BackButton navigation={navigation} targetScreen="Home"/>
+        <View style={styles.title}>
+          <Text style={styles.headerText}>
+            <Ionicons name="code" size={30} color="#1e1e2e" style={styles.icon} /> CodExam Reader
+          </Text>
         </View>
       </View>
+
       <View style={styles.footer}>
         <Text style={{ fontSize: 60, paddingHorizontal: 20, marginTop: 50 }}>Login</Text>
         <View style={styles.inputContainer}>
@@ -64,8 +65,7 @@ export default function LoginScreen({ navigation }: Props) {
           <TouchableOpacity style={styles.buttonEntered} onPress={handleLogin}>
             <Text style={styles.buttonText}>Giriş Yap</Text>
           </TouchableOpacity>
-
-          <TouchableOpacity style={styles.buttonRegisterPage} onPress={() => navigation.navigate("Register")}>
+          <TouchableOpacity style={styles.buttonRegisterPage} onPress={() => navigation.navigate("Register")}> 
             <Text style={styles.registerInfo}>Üye değil misiniz? Kaydolun</Text>
           </TouchableOpacity>
         </View>
@@ -75,35 +75,23 @@ export default function LoginScreen({ navigation }: Props) {
 }
 
 const styles = StyleSheet.create({
-  header: {
-    textAlign: "center",
-    flex: 1,
-    flexDirection: "row",
-    alignItems: "center",
-    backgroundColor: "#cdd6f4",
-    borderBottomRightRadius: 80,
+  headerText: {
+    padding: 20,
+    color: "#cdd6f4",
+    fontSize: 36,
+    fontWeight: "bold",
+    marginLeft: 0,
   },
   body: {
     flex: 1,
-    justifyContent: "center",
+    justifyContent: "flex-start",
     backgroundColor: "#1e1e2e",
   },
   footer: {
-    flex: 6,
+    flex: 4,
     backgroundColor: "#cdd6f4",
-    borderTopRightRadius: 100,
-  },
-  title: {
-    fontSize: 50,
-    color: "#1e1e2e",
-    fontWeight: "bold",
-    textAlign: "center",
-  },
-  icon: {
-    marginLeft: 40,
-    color: "#1e1e2e",
-    fontWeight: "bold",
-    textAlign: "center",
+    borderTopRightRadius: 50,
+    paddingBottom: 50,
   },
   input: {
     height: 40,
@@ -145,5 +133,11 @@ const styles = StyleSheet.create({
     fontSize: 24,
     color: "#cdd6f4",
     fontWeight: "bold",
+  },
+  icon: {
+    color: "#cdd6f4",
+  },
+  title: {
+    flex: 1,
   },
 });

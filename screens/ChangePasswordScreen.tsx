@@ -61,12 +61,14 @@ export default function ChangePasswordScreen({ navigation }: Props) {
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: "#1e1e2e" }}>
             <View style={styles.header}>
-                <BackButton navigation={navigation} />
-                <Text style={styles.title}>Şifre Güncelleme</Text>
-            </View>
+            <BackButton navigation={navigation} />
+            
+                
+                </View>
+                
             <View style={styles.body}>
                 <View style={styles.icon}>
-                    <Ionicons name="code" size={40} color="#cdd6f4" />
+                    <Ionicons name="code" size={40} color="#cdd6f4" /><Text style={styles.title}>  Şifre Güncelleme</Text>
                 </View>
             </View>
             <View style={styles.footer}>
@@ -117,12 +119,12 @@ export default function ChangePasswordScreen({ navigation }: Props) {
 
 const styles = StyleSheet.create({
     header: {
-        textAlign: "center",
+        flexDirection:"row",
+        textAlign:"left",
         flex: 1,
-        flexDirection: "row",
         alignItems: "center",
-        backgroundColor: "#cdd6f4",
-        borderBottomRightRadius: 80,
+        backgroundColor: "#1e1e2e",
+        borderBottomRightRadius: 10,
     },
     body: {
         flex: 1,
@@ -130,18 +132,20 @@ const styles = StyleSheet.create({
         backgroundColor: "#1e1e2e",
     },
     footer: {
-        flex: 6,
+        flex: 12,
         backgroundColor: "#cdd6f4",
         borderTopRightRadius: 100,
     },
     title: {
-        fontSize: 50,
-        color: "#1e1e2e",
+        marginTop:-8,
+        fontSize: 38,
+        color: "#cdd6f4",
         fontWeight: "bold",
-        textAlign: "center",
+        
     },
     icon: {
-        marginLeft: 40,
+        flexDirection:"row",
+        marginLeft: 30,
         color: "#1e1e2e",
         fontWeight: "bold",
         textAlign: "center",
