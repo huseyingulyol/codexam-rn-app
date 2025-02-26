@@ -1,15 +1,6 @@
 # CodExam Reader - Mobile Frontend
 CodExam Reader, el yazısını algılamak için geliştirilen yazılımın mobil frontend repository'sidir. Bu proje, React Native, TypeScript ve Expo kullanılarak geliştirilmiş bir mobil uygulamadır. Basit bir mimari izlenmiş olup, backend ile etkileşimde controller ve service katmanları kullanılmıştır.
 
-- [Node.js](https://nodejs.org/)
-- [Expo CLI](https://docs.expo.dev/get-started/installation/)
-- [TypeScript](https://www.typescriptlang.org/)
-
-
-# React Native Projesi (TypeScript ve Expo)
-
-Bu proje, React Native, TypeScript ve Expo kullanılarak geliştirilmiş bir mobil uygulamadır. Basit bir mimari izlenmiş olup, backend etkileşimi için controller ve service katmanları kullanılmıştır.
-
 ## Gereksinimler
 - [Node.js](https://nodejs.org/)
 - [Expo CLI](https://docs.expo.dev/get-started/installation/)
