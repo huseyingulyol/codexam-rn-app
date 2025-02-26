@@ -54,7 +54,7 @@ Directory structure:
 
 
 
-#Android Emülatöründe Çalıştırma
+# Android Emülatöründe Çalıştırma
 
 Android Studio'yu indirin ve kurun.
 Android Virtual Device (AVD) oluşturun ve çalıştırın.
